@@ -14,11 +14,11 @@
 
 html,
 body {
-  margin: 10;
+  margin: 5;
   padding: 10;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: 'Faster', monospace;
   line-height: 1.55;
 }
 
@@ -38,6 +38,54 @@ body {
   box-shadow: 0 10px 28px rgba(0, 0, 0, .35);
 }
 
+.post-card a {
+  color: #fff;
+  /* Link color inside the card */
+  text-decoration: none;
+  /* Remove default underline */
+}
+
+.post-card a:hover {
+  text-decoration: none;
+  /* Show underline on hover */
+}
+
+/* images inside the card */
+.post-card img {
+  max-width: 100%;
+  /* never go beyond container width */
+  height: auto;
+  /* keeps the aspect ratio */
+  display: block;
+  /* removes inline spacing below */
+  margin: 1rem auto;
+  /* center + spacing */
+  border-radius: 12px;
+  /* optional: rounded corners */
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); */
+  /* optional: a subtle shadow */
+}
+
+.post-card h2 {
+  margin-top: 0;
+  /* Remove top spacing for a tidy look */
+}
+
+
+.post-card .post-meta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  /* Subtle text for metadata */
+  margin-bottom: 0.5rem;
+}
+
+.post-card .post-summary {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  /* Tighten up spacing */
+}
+
 /* makes the WHOLE card clickable  */
 .post-link {
   display: block;
@@ -53,6 +101,13 @@ body {
   outline: 3px solid var(--accent);
 }
 
+.post-link:hover .post-card {
+  /* Optionally add a hover effect for clarity when hovering over a card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+
 .post-title {
   margin: 0 0 .25rem 0;
 }
@@ -67,16 +122,43 @@ body {
   margin: 0;
 }
 
-/* images inside the card */
-.post-card img {
-  width: 100%;
-  /* responsive */
+
+
+.img-medium {
+  width: 60%;
+  max-width: 600px;
+  height: auto;
+  margin: 2rem auto;
   display: block;
-  margin: .75rem 0;
-  border-radius: 8px;
-  object-fit: cover;
-  max-height: 260px;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Center image */
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Optional sizing */
+.img-small {
+  width: 25%;
+}
+
+.img-medium {
+  width: 50%;
+  max-width: 600px;
+}
+
+.img-large {
+  width: 75%;
+}
+
 
 /* ---------- FEED LAYOUT ---------- */
 .feed {
@@ -86,58 +168,4 @@ body {
   /* a bit of breathing room on phones */
   margin: 2.5rem auto;
   /* centre horizontally */
-}
-
-.post-link {
-  display: block;
-  /* Makes the whole area clickable */
-  text-decoration: none;
-  /* Removes the underline on the link */
-  color: inherit;
-  /* Inherits the text color from the parent */
-}
-
-.post-link:hover .post-card {
-  /* Optionally add a hover effect for clarity when hovering over a card */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease;
-}
-
-.post-card {
-  /* Dark gray background */
-  padding: 1rem;
-  /* Inner spacing */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Subtle drop shadow */
-}
-
-.post-card h2 {
-  margin-top: 0;
-  /* Remove top spacing for a tidy look */
-}
-
-.post-card a {
-  color: #fff;
-  /* Link color inside the card */
-  text-decoration: none;
-  /* Remove default underline */
-}
-
-.post-card a:hover {
-  text-decoration: none;
-  /* Show underline on hover */
-}
-
-.post-card .post-meta {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  /* Subtle text for metadata */
-  margin-bottom: 0.5rem;
-}
-
-.post-card .post-summary {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-  /* Tighten up spacing */
 }

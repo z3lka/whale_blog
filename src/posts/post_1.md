@@ -1,7 +1,7 @@
 ---
 title: "Attention"
 date: 2002-09-10
-layout: base.njk
+layout: base
 readingTime: 5
 tags: posts
 published: True

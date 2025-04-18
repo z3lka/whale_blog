@@ -10,8 +10,15 @@
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
-    {% include "nav.njk" %}
-    {{ content | safe }}
-    {% include "footer.njk" %}
+    <div class="feed">
+      <nav>
+        <span>
+          Whale's Blog:
+          <a href="/">Home</a>
+        </span>
+      </nav>
+      {{ content | safe }}
+      {% include "footer.njk" %}
+    </div>
   </body>
 </html>

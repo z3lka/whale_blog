@@ -8,29 +8,31 @@ pagination:
   alias: posts
 ---
 
-<div class="feed">
-  <br>
-    <b>Hey That's me. Im documenting my leraning journey and want to share it with you. I hope you enjoy it. If you have any
-      questions or feedback, feel free to reach out to me on my social media accounts.
-    </b>
-    <hr>
-      {% for post in collections.posts | reverse %}
-        <article class="post-card">
-          <a class="post-link" href="{{ post.url | url }}">
-            <h2 class="post-title">{{ post.data.title or post.data.pageTitle }}</h2>
-            <p class="post-meta">
-              {{ post.date | date("MMMM d, yyyy") }} •
-              {{ post.data.readingTime }} min read • by
-              <b>{{ post.data.author }}</b>
+<br>
+  <h1>
+    Welcome to my blog!👋🏻
+  </h1>
+  <b>Hey👋🏻, that's me &mdash; good to see you here. I'm documenting my learning journey and wanted to share it with you.
+    I hope you enjoy it. If you have any questions or feedback, feel free to reach out to me through my social media
+    accounts.
+  </b>
+  <hr>
+    {% for post in collections.posts | reverse %}
+      <article class="post-card">
+        <a class="post-link" href="{{ post.url | url }}">
+          <h2 class="post-title">{{ post.data.title or post.data.pageTitle }}</h2>
+          <p class="post-meta">
+            {{ post.date | date("MMMM d, yyyy") }} •
+            {{ post.data.readingTime }} min read • by
+            <b>{{ post.data.author }}</b>
+          </p>
+          {#  show a featured image if front‑matter provides `post_image`  #}
+          {% if post.data.post_image %}
+            <img src="/img/{{ post.data.post_image | url }}" alt="{{ post.data.title }}">
+            {% endif %}
+            <p class="post-summary">
+              {{ post.data.post_excerpt | excerpt(50) | safe }}
             </p>
-            {#  show a featured image if front‑matter provides `post_image`  #}
-            {% if post.data.post_image %}
-              <img src="/img/{{ post.data.post_image | url }}" alt="{{ post.data.title }}">
-              {% endif %}
-              <p class="post-summary">
-                {{ post.data.post_excerpt | excerpt(50) | safe }}
-              </p>
-            </a>
-          </article>
-        {% endfor %}
-      </div>
+          </a>
+        </article>
+      {% endfor %}
