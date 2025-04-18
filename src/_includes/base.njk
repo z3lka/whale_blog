@@ -1,0 +1,17 @@
+{# This page just for display title, date and content #}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title | safe }}</title>
+    <meta name='description' content="{{ description }}"/>
+    <link rel="stylesheet" href="https://unpkg.com/water.css@2/out/water.css"/>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    {% include "nav.njk" %}
+    {{ content | safe }}
+    {% include "footer.njk" %}
+  </body>
+</html>

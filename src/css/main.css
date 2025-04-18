@@ -1,0 +1,143 @@
+/*  colour palette – tweak to taste  */
+:root {
+  --bg: #111827;
+  /* page background   */
+  --card: #4338ca;
+  /* card background   */
+  --card-alt: #4f46e5;
+  /* card hover colour */
+  --text: #f9fafb;
+  /* normal text       */
+  --accent: #93c5fd;
+  /* links / meta text */
+}
+
+html,
+body {
+  margin: 10;
+  padding: 10;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.55;
+}
+
+/* ----- reusable card ----- */
+.post-card {
+  background-color: rgb(70, 68, 126);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.0rem 0;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+}
+
+.post-card:hover {
+  background: var(--card‑alt);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .35);
+}
+
+/* makes the WHOLE card clickable  */
+.post-link {
+  display: block;
+  /* stretch over the card */
+  width: 100%;
+  color: inherit;
+  /* keep text colour       */
+  text-decoration: none;
+  /* remove underline       */
+}
+
+.post-link:focus-visible {
+  outline: 3px solid var(--accent);
+}
+
+.post-title {
+  margin: 0 0 .25rem 0;
+}
+
+.post-meta {
+  font-size: .9rem;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+
+.post-summary {
+  margin: 0;
+}
+
+/* images inside the card */
+.post-card img {
+  width: 100%;
+  /* responsive */
+  display: block;
+  margin: .75rem 0;
+  border-radius: 8px;
+  object-fit: cover;
+  max-height: 260px;
+}
+
+/* ---------- FEED LAYOUT ---------- */
+.feed {
+  max-width: 750px;
+  /* ✧ adjust “narrowness” here */
+  width: 92%;
+  /* a bit of breathing room on phones */
+  margin: 2.5rem auto;
+  /* centre horizontally */
+}
+
+.post-link {
+  display: block;
+  /* Makes the whole area clickable */
+  text-decoration: none;
+  /* Removes the underline on the link */
+  color: inherit;
+  /* Inherits the text color from the parent */
+}
+
+.post-link:hover .post-card {
+  /* Optionally add a hover effect for clarity when hovering over a card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.post-card {
+  /* Dark gray background */
+  padding: 1rem;
+  /* Inner spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle drop shadow */
+}
+
+.post-card h2 {
+  margin-top: 0;
+  /* Remove top spacing for a tidy look */
+}
+
+.post-card a {
+  color: #fff;
+  /* Link color inside the card */
+  text-decoration: none;
+  /* Remove default underline */
+}
+
+.post-card a:hover {
+  text-decoration: none;
+  /* Show underline on hover */
+}
+
+.post-card .post-meta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  /* Subtle text for metadata */
+  margin-bottom: 0.5rem;
+}
+
+.post-card .post-summary {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  /* Tighten up spacing */
+}
