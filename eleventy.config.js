@@ -3,7 +3,7 @@ const stripHtml = require("striptags");
 
 module.exports = function (eleventyConfig) {
   // Copy `src/styles.css` to output
-  eleventyConfig.addPassthroughCopy({ "src/img": "img" });
+  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
 
   // Example filter for reading time (if you want to compute it)

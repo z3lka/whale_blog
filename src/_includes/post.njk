@@ -1,0 +1,15 @@
+---
+layout: "base.njk"
+--- 
+
+{% block content %}
+  <article class="post">
+    <h1>{{ title }}</h1>
+    <p class="post-meta">
+      {{ date | date("MMMM d, yyyy") }} &middot; {{ readingTime }} min read &middot; By
+      <b>{{ author }}</b>
+    </p>
+    {{ content | safe }} <hr/>
+    <p style="font-size: 0.9rem;">Got thoughts? Reach out to me anytime!</p>
+  </article>
+{% endblock %}
