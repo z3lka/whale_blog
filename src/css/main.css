@@ -123,6 +123,19 @@ body {
 }
 
 
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.img-small {
+  width: 30%;
+  max-width: 400px;
+  height: auto;
+  margin: 2rem auto;
+  display: block;
+}
 
 .img-medium {
   width: 60%;
@@ -132,33 +145,14 @@ body {
   display: block;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-}
-
-/* Center image */
-.img-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Optional sizing */
-.img-small {
-  width: 25%;
-}
-
-.img-medium {
-  width: 50%;
-  max-width: 600px;
-}
 
 .img-large {
-  width: 75%;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 2rem auto;
+  display: block;
 }
-
 
 /* ---------- FEED LAYOUT ---------- */
 .feed {
