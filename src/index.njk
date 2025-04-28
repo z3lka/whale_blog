@@ -1,7 +1,6 @@
 ---
 title: Whale Blog
 layout: base
-readingTime: 5
 pagination:
   data: collections.posts
   size: 10
@@ -31,13 +30,6 @@ pagination:
                 <b>
                   {{ post.date | date("MMMM d, yyyy") }} • {{ post.data.readingTime }} min read • by {{ post.data.author }}</b>
               </p>
-              {#  show a featured image if front‑matter provides `post_image`  #}
-              {% if post.data.post_image %}
-                <img src="/assets/{{ post.data.post_image | url }}" alt="{{ post.data.title }}">
-                {% endif %}
-                <p class="post-summary">
-                  {{ post.data.post_excerpt | excerpt(50) | safe }}
-                </p>
-              </a>
-            </article>
-          {% endfor %}
+            </a>
+          </article>
+        {% endfor %}
