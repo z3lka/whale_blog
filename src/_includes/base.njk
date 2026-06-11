@@ -3,11 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{% if title and title != site.title %}{{ title | safe }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <title>
+      {% if title and title != site.title %}
+        {{ title | safe }} · {{ site.title }}
+      {% else %}
+        {{ site.title }}
+      {% endif %}
+    </title>
     <meta name="description" content="{{ description or site.description }}">
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com https://unpkg.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'">
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com https://unpkg.com;
+        font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#182127">
@@ -19,21 +26,15 @@
     <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="/css/main.css">
   </head>
-  <body{% if page.url == "/" %} class="home-page"{% endif %}>
+  <body {% if page.url == "/" %} class="home-page" {% endif %}>
     {% if site.stickers %}
       {% if site.stickers.left.length %}
         <div class="sticker-rail sticker-rail--left">
           {% for sticker in site.stickers.left %}
             {% set stickerSrc = sticker.src or sticker %}
             {% if sticker.href %}
-                <a
-                  class="side-sticker-link"
-                  href="{{ sticker.href }}"
-                  aria-label="{{ sticker.label or 'Sticker link' }}"
-                  {% if sticker.target %}target="{{ sticker.target }}" rel="noopener
-                  noreferrer"{% endif %}
-                  title="{{ sticker.label or 'Sticker link' }}"
-                >
+              <a class="side-sticker-link" href="{{ sticker.href }}" aria-label="{{ sticker.label or 'Sticker link' }}" {% if sticker.target %} target="{{ sticker.target }}" rel="noopener
+                                                  noreferrer" {% endif %} title="{{ sticker.label or 'Sticker link' }}">
                 <img class="side-sticker" src="{{ stickerSrc | url }}" alt="">
               </a>
             {% else %}
@@ -42,20 +43,12 @@
           {% endfor %}
         </div>
       {% endif %}
-
       {% if site.stickers.right.length %}
         <div class="sticker-rail sticker-rail--right">
           {% for sticker in site.stickers.right %}
             {% set stickerSrc = sticker.src or sticker %}
             {% if sticker.href %}
-              <a
-                  class="side-sticker-link"
-                  href="{{ sticker.href }}"
-                  aria-label="{{ sticker.label or 'Sticker link' }}"
-                  {% if sticker.target %}target="{{ sticker.target }}" rel="noopener
-                  noreferrer"{% endif %}
-                  title="{{ sticker.label or 'Sticker link' }}"
-                >
+              <a class="side-sticker-link" href="{{ sticker.href }}" aria-label="{{ sticker.label or 'Sticker link' }}" {% if sticker.target %} target="{{ sticker.target }}" rel="noopener noreferrer" {% endif %} title="{{ sticker.label or 'Sticker link' }}">
                 <img class="side-sticker" src="{{ stickerSrc | url }}" alt="">
               </a>
             {% else %}
@@ -65,21 +58,17 @@
         </div>
       {% endif %}
     {% endif %}
-
     <div class="site-shell">
       <header class="site-header section-reveal">
         <a class="brand" href="/">z3lka</a>
         <nav class="site-nav" aria-label="Primary">
-          <a href="/#about" {% if page.url == "/" %}aria-current="page"{% endif %}>About</a>
+          <a href="/#about" {% if page.url == "/" %} aria-current="page" {% endif %}>About</a>
           <a href="/#projects">Projects</a>
           {% if collections.notes.length %}
             <a href="/#notes">Notes</a>
           {% endif %}
           {% if collections.posts.length %}
             <a href="/#posts">Posts</a>
-          {% endif %}
-          {% if collections.log.length %}
-            <a href="/#updates">Updates</a>
           {% endif %}
         </nav>
       </header>

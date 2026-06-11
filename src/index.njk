@@ -6,157 +6,150 @@ description: Personal portfolio and notes by z3lka.
 ---
 
 <div class="home-with-sidebar">
-
-<aside class="home-sidebar">
-  <section class="github-month">
-    <div class="github-month__header">
-      <span>GitHub Activity</span>
-      <h2>{{ githubActivity.monthLabel }}</h2>
-      <p>{{ githubActivity.total }} contributions</p>
-    </div>
-
-    {% if githubActivity.error %}
-      <p class="github-month__status">Could not load GitHub activity.</p>
+  <aside class="home-sidebar">
+    <section class="github-month">
+      <div class="github-month__header">
+        <span>GitHub Activity</span>
+        <h2>{{ githubActivity.monthLabel }}</h2>
+        <p>{{ githubActivity.total }} contributions</p>
+      </div>
+      {% if githubActivity.error %}
+        <p class="github-month__status">Could not load GitHub activity.</p>
+      {% endif %}
+      <div class="github-month__weekdays" aria-hidden="true">
+        <span>M</span>
+        <span>T</span>
+        <span>W</span>
+        <span>T</span>
+        <span>F</span>
+        <span>S</span>
+        <span>S</span>
+      </div>
+      <div class="github-month__grid">
+        {% for spacer in range(0, githubActivity.leadingSpacers) %}
+          <div class="github-day-spacer" aria-hidden="true"></div>
+        {% endfor %}
+        {% for day in githubActivity.days %}
+          <div class="github-day github-day--level-{{ day.level }}" title="{{ day.date }} — {{ day.contributionCount }} contributions" aria-label="{{ day.date }} — {{ day.contributionCount }} contributions"></div>
+        {% endfor %}
+      </div>
+    </section>
+  </aside>
+  <div class="home-content">
+    <section class="hero home-section section-reveal" id="about">
+      <h1>Hi, I'm Ahmet</h1>
+      <p>I just chill around usually, when I don't I do some
+        <a href="https://github.com/z3lka">code</a>, watch some anime or just walk around in the city.</p>
+      <p>I love learning new things when I started to university in my preperation year I took Andrew Ng's deep learning
+        courses, the way Andrew teaches sparked something inside me and I was really shocked when the first cat classifier
+        worked. Which has impacted me the most to take the direction in deep learning for my career.
+      </p>
+      <p>
+        Currently I'm building projects, reading some research papers and trying to gain intuition and implement them. I'll add
+        them below in the
+        <a href="#projects">
+          projects
+        </a>section
+      </p>
+    </section>
+    <section class="home-section section-reveal" id="projects">
+      <div class="section-heading">
+        <h2>Projects</h2>
+      </div>
+      <div class="simple-list">
+        {% if collections.projects.length %}
+          {% for project in collections.projects | reverse %}
+            <article class="simple-item">
+              <a href="{{ project.url | url }}">
+                <h3 class="item-title">{{ project.data.title or project.data.pageTitle }}</h3>
+              </a>
+              <div class="item-meta">
+                <span>{{ project.date | date("MMMM d, yyyy") }}</span>
+                <span>{{ project.templateContent | readTime }} min read</span>
+                <span>{{ project.data.author or site.title }}</span>
+              </div>
+              <p class="item-summary">{{ project.templateContent | excerpt(34) }}</p>
+            </article>
+          {% endfor %}
+        {% elif site.github %}
+          <article class="simple-item">
+            <a href="{{ site.github | safe }}">
+              <h3 class="item-title">GitHub</h3>
+            </a>
+            <p class="item-summary">Code, experiments, and current repos.</p>
+          </article>
+        {% endif %}
+      </div>
+    </section>
+    {% if collections.notes.length %}
+      <section class="home-section section-reveal" id="notes">
+        <div class="section-heading">
+          <h2>Notes</h2>
+        </div>
+        <div class="simple-list">
+          {% for note in collections.notes | reverse %}
+            <article class="simple-item">
+              <a href="{{ note.url | url }}">
+                <h3 class="item-title">{{ note.data.title or note.data.pageTitle }}</h3>
+              </a>
+              <div class="item-meta">
+                <span>{{ note.date | date("MMMM d, yyyy") }}</span>
+                <span>{{ note.templateContent | readTime }} min read</span>
+                <span>{{ note.data.author or site.title }}</span>
+              </div>
+              <p class="item-summary">{{ note.templateContent | excerpt(36) }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
     {% endif %}
-
-    <div class="github-month__weekdays" aria-hidden="true">
-      <span>M</span>
-      <span>T</span>
-      <span>W</span>
-      <span>T</span>
-      <span>F</span>
-      <span>S</span>
-      <span>S</span>
-    </div>
-
-    <div class="github-month__grid">
-      {% for spacer in range(0, githubActivity.leadingSpacers) %}
-        <div class="github-day-spacer" aria-hidden="true"></div>
-      {% endfor %}
-
-      {% for day in githubActivity.days %}
-        <div
-          class="github-day github-day--level-{{ day.level }}"
-          title="{{ day.date }} — {{ day.contributionCount }} contributions"
-          aria-label="{{ day.date }} — {{ day.contributionCount }} contributions"
-        ></div>
-      {% endfor %}
-    </div>
-  </section>
-</aside>
-
-<div class="home-content">
-
-<section class="hero home-section section-reveal" id="about">
-  <h1>Hi, I'm Ahmet</h1>
-  <p>I just chill around usually, when I don't I do some <a href="https://github.com/z3lka">code</a>, watch some anime or just walk around in the city.</p>
-  <p>I love learning new things when I started to university in my preperation year I took Andrew Ng's deep learning course, the way Andrew teaches sparked something inside me and i was really shocked when the first cat classifier worked.
-  </p>
-  <h2> About stickers </h2>
-</section>
-
-<section class="home-section section-reveal" id="projects">
-  <div class="section-heading">
-    <span class="section-label">Projects</span>
-    <h2>Projects</h2>
-  </div>
-  <div class="simple-list">
-    {% if collections.projects.length %}
-      {% for project in collections.projects | reverse %}
-        <article class="simple-item">
-          <a href="{{ project.url | url }}">
-            <h3 class="item-title">{{ project.data.title or project.data.pageTitle }}</h3>
-          </a>
-          <div class="item-meta">
-            <span>{{ project.date | date("MMMM d, yyyy") }}</span>
-            <span>{{ project.templateContent | readTime }} min read</span>
-            <span>{{ project.data.author or site.title }}</span>
-          </div>
-          <p class="item-summary">{{ project.templateContent | excerpt(34) }}</p>
-        </article>
-      {% endfor %}
-    {% elif site.github %}
-      <article class="simple-item">
-        <a href="{{ site.github | safe }}">
-          <h3 class="item-title">GitHub</h3>
-        </a>
-        <p class="item-summary">Code, experiments, and current repos.</p>
-      </article>
+    {% if collections.posts.length %}
+      <section class="home-section section-reveal" id="posts">
+        <div class="section-heading">
+          <span class="section-label">Posts</span>
+          <h2>Posts</h2>
+        </div>
+        <div class="simple-list">
+          {% for post in collections.posts | reverse %}
+            <article class="simple-item">
+              <a href="{{ post.url | url }}">
+                <h3 class="item-title">{{ post.data.title or post.data.pageTitle }}</h3>
+              </a>
+              <div class="item-meta">
+                <span>{{ post.date | date("MMMM d, yyyy") }}</span>
+                <span>{{ post.templateContent | readTime }} min read</span>
+                <span>{{ post.data.author or site.title }}</span>
+              </div>
+              <p class="item-summary">{{ post.templateContent | excerpt(36) }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    {% if collections.log.length %}
+      <section class="home-section section-reveal" id="updates">
+        <div class="section-heading">
+          <span class="section-label">Updates</span>
+          <h2>Updates</h2>
+        </div>
+        <div class="simple-list">
+          {% for log in collections.log | reverse %}
+            <article class="simple-item">
+              <a href="{{ log.url | url }}">
+                <h3 class="item-title">{{ log.data.title or log.data.pageTitle }}</h3>
+              </a>
+              <div class="item-meta">
+                <span>{{ log.date | date("MMMM d, yyyy") }}</span>
+                <span>{{ log.templateContent | readTime }} min read</span>
+                <span>{{ log.data.author or site.title }}</span>
+              </div>
+              <p class="item-summary">{{ log.templateContent | excerpt(36) }}</p>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
     {% endif %}
   </div>
-</section>
-
-{% if collections.notes.length %}
-  <section class="home-section section-reveal" id="notes">
-    <div class="section-heading">
-      <span class="section-label">Notes</span>
-      <h2>Notes</h2>
-    </div>
-    <div class="simple-list">
-      {% for note in collections.notes | reverse %}
-        <article class="simple-item">
-          <a href="{{ note.url | url }}">
-            <h3 class="item-title">{{ note.data.title or note.data.pageTitle }}</h3>
-          </a>
-          <div class="item-meta">
-            <span>{{ note.date | date("MMMM d, yyyy") }}</span>
-            <span>{{ note.templateContent | readTime }} min read</span>
-            <span>{{ note.data.author or site.title }}</span>
-          </div>
-          <p class="item-summary">{{ note.templateContent | excerpt(36) }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
-
-{% if collections.posts.length %}
-  <section class="home-section section-reveal" id="posts">
-    <div class="section-heading">
-      <span class="section-label">Posts</span>
-      <h2>Posts</h2>
-    </div>
-    <div class="simple-list">
-      {% for post in collections.posts | reverse %}
-        <article class="simple-item">
-          <a href="{{ post.url | url }}">
-            <h3 class="item-title">{{ post.data.title or post.data.pageTitle }}</h3>
-          </a>
-          <div class="item-meta">
-            <span>{{ post.date | date("MMMM d, yyyy") }}</span>
-            <span>{{ post.templateContent | readTime }} min read</span>
-            <span>{{ post.data.author or site.title }}</span>
-          </div>
-          <p class="item-summary">{{ post.templateContent | excerpt(36) }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
-
-{% if collections.log.length %}
-  <section class="home-section section-reveal" id="updates">
-    <div class="section-heading">
-      <span class="section-label">Updates</span>
-      <h2>Updates</h2>
-    </div>
-    <div class="simple-list">
-      {% for log in collections.log | reverse %}
-        <article class="simple-item">
-          <a href="{{ log.url | url }}">
-            <h3 class="item-title">{{ log.data.title or log.data.pageTitle }}</h3>
-          </a>
-          <div class="item-meta">
-            <span>{{ log.date | date("MMMM d, yyyy") }}</span>
-            <span>{{ log.templateContent | readTime }} min read</span>
-            <span>{{ log.data.author or site.title }}</span>
-          </div>
-          <p class="item-summary">{{ log.templateContent | excerpt(36) }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
-
-</div>{# .home-content #}
-</div>{# .home-with-sidebar #}
+  {# .home-content #}
+</div>
+{# .home-with-sidebar #}
